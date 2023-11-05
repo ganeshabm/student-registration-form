@@ -1,4 +1,5 @@
 from tkinter import *
+import registrationLogin
 from tkinter import filedialog
 import  mysql.connector
 from PIL import ImageTk, Image
@@ -6,7 +7,8 @@ import re
 import os
 import shutil
 from time import *
-def main(param):
+
+def mainWindow(param):
     conn = mysql.connector.connect(host="localhost", user="root", password="root")
     '''
     if (conn):
@@ -18,10 +20,11 @@ def main(param):
     db.execute("use demoregistration")
     global loginidva
     loginidva = param
-    #print("loginidval:"+loginidva)
     if loginidva!="":
         root=Tk()
         registerapply=Registerapply(root,db,conn)
+    else:
+        registrationLogin.main()
 
 class Registerapply:
     def __init__(self,root,db,conn):
@@ -51,46 +54,46 @@ class Registerapply:
         self.img1 = ImageTk.PhotoImage(self.img1)
         self.img = Label(self.frame3, image=self.img1).grid(row=0)
 
-        self.applicationlabel=Label(self.frame3,text="Application Form",font=('Bradley Hand ITC', 20),fg="green")
+        self.applicationlabel=Label(self.frame3,text="Application Form",font=('Times New Roman', 20),fg="green")
         self.applicationlabel.grid(row=1)
-        self.loginlabel=Label(self.frame2,text="Login ID:",pady=0,padx=0,font=('Bradley Hand ITC', 10))
+        self.loginlabel=Label(self.frame2,text="Login ID:",pady=0,padx=0,font=('Times New Roman', 10))
         self.loginlabel.grid(row=0,column=0,sticky="ew")
-        self.loginlabelval = Label(self.frame2, text=loginidva,pady=2,fg="red",font=('Bradley Hand ITC', 10))
+        self.loginlabelval = Label(self.frame2, text=loginidva,pady=2,fg="red",font=('Times New Roman', 10))
         self.loginlabelval.grid(row=0, column=1, sticky="ew")
-        self.namelabel = Label(self.frame, text="Enter Your Name:", padx=10, pady=10,font=('Bradley Hand ITC', 10))
+        self.namelabel = Label(self.frame, text="Enter Your Name:", padx=10, pady=10,font=('Times New Roman', 10))
         self.namelabel.grid(row=0, column=0, sticky="ew")
-        self.agelabel = Label(self.frame, text="Enter Your Age:", padx=10, pady=10,font=('Bradley Hand ITC', 10))
+        self.agelabel = Label(self.frame, text="Enter Your Age:", padx=10, pady=10,font=('Times New Roman', 10))
         self.agelabel.grid(row=1, column=0, sticky="ew")
-        self.phonelabel = Label(self.frame, text="Enter Your phone Number:", padx=10, pady=10,font=('Bradley Hand ITC', 10))
+        self.phonelabel = Label(self.frame, text="Enter Your phone Number:", padx=10, pady=10,font=('Times New Roman', 10))
         self.phonelabel.grid(row=2, column=0, sticky="ew")
-        self.gmaillabel = Label(self.frame, text="Enter Your Gmail:", padx=10, pady=10,font=('Bradley Hand ITC', 10))
+        self.gmaillabel = Label(self.frame, text="Enter Your Gmail:", padx=10, pady=10,font=('Times New Roman', 10))
         self.gmaillabel.grid(row=3, column=0, sticky="ew")
-        self.addphotolabel = Label(self.frame, text="Add photo:", padx=10, pady=10,font=('Bradley Hand ITC', 10))
+        self.addphotolabel = Label(self.frame, text="Add photo:", padx=10, pady=10,font=('Times New Roman', 10))
         self.addphotolabel.grid(row=4, column=0, sticky="ew")
-        self.addsupportingphotolabel = Label(self.frame, text="Add Supporting photo:", padx=10, pady=10,font=('Bradley Hand ITC', 10))
+        self.addsupportingphotolabel = Label(self.frame, text="Add Supporting photo:", padx=10, pady=10,font=('Times New Roman', 10))
         self.addsupportingphotolabel.grid(row=5, column=0, sticky="ew")
-        self.errorlabel = Label(self.frame1, text="", padx=0, pady=0, fg="red",font=('Bradley Hand ITC', 10))
+        self.errorlabel = Label(self.frame1, text="", padx=0, pady=0, fg="red",font=('Times New Roman', 10))
         self.errorlabel.grid(row=5, column=0, sticky="ew")
-        self.nameentry = Entry(self.frame,font=('Bradley Hand ITC', 10))
+        self.nameentry = Entry(self.frame,font=('Times New Roman', 10))
         self.nameentry.grid(row=0, column=1, sticky="ew")
-        self.ageentry = Entry(self.frame,font=('Bradley Hand ITC', 10))
+        self.ageentry = Entry(self.frame,font=('Times New Roman', 10))
         self.ageentry.grid(row=1, column=1, sticky="ew")
-        self.phoneentry = Entry(self.frame,font=('Bradley Hand ITC', 10))
+        self.phoneentry = Entry(self.frame,font=('Times New Roman', 10))
         self.phoneentry.grid(row=2, column=1, sticky="ew")
-        self.gmailentry = Entry(self.frame,font=('Bradley Hand ITC', 10))
+        self.gmailentry = Entry(self.frame,font=('Times New Roman', 10))
         self.gmailentry.grid(row=3, column=1, sticky="ew")
-        self.photolabel=Label(self.frame,font=('Bradley Hand ITC', 10))
+        self.photolabel=Label(self.frame,font=('Times New Roman', 10))
         self.photolabel.grid(row=4,column=1,sticky="e")
-        self.addphoto=Button(self.frame,text="Add photo",command=self.addphoto,font=('Bradley Hand ITC', 10))
+        self.addphoto=Button(self.frame,text="Add photo",command=self.addphoto,font=('Times New Roman', 10))
         self.addphoto.grid(row=4, column=1, sticky="w")
-        self.photosupportinglabel=Label(self.frame,font=('Bradley Hand ITC', 10))
+        self.photosupportinglabel=Label(self.frame,font=('Times New Roman', 10))
         self.photosupportinglabel.grid(row=5,column=1,sticky="e")
-        self.addsupportingphoto=Button(self.frame,text="Add photo",command=self.addsupportingphotofun,font=('Bradley Hand ITC', 10))
+        self.addsupportingphoto=Button(self.frame,text="Add photo",command=self.addsupportingphotofun,font=('Times New Roman', 10))
         self.addsupportingphoto.grid(row=5, column=1, sticky="w")
-        self.submitregister = Button(self.frame, text="Submit",font=('Bradley Hand ITC', 10), bg="#808080", fg="Black", justify="center", pady=5,
+        self.submitregister = Button(self.frame, text="Submit",font=('Times New Roman', 10), bg="#808080", fg="Black", justify="center", pady=5,
                                      padx=20,command=self.submitapplication)
         self.submitregister.grid(row=6, column=1, sticky="e")
-        self.viewapplibtn = Button(self.frame,font=('Bradley Hand ITC', 10), text="View Application", padx=10, pady=5,activebackground="green",bg="green",fg="white",state="active",command=self.showapplication)
+        self.viewapplibtn = Button(self.frame,font=('Times New Roman', 10), text="View Application", padx=10, pady=5,activebackground="green",bg="green",fg="white",state="active",command=self.showapplication)
         self.viewapplibtn.grid(row=6, column=0, sticky="ew")
 
         self.db.execute("create table if not exists applicationdetails(name varchar(50),age int,gmail varchar(50),photo varchar(256),supporting_photo varchar(256),application_id int auto_increment primary key,phonenumber varchar(30),loginid varchar(56))")
@@ -254,4 +257,4 @@ class Registerapply:
         self.photosupportinglabel.config(image=self.supportinimg)
 
 if __name__ == '__main__':
-    main("s")
+    mainWindow("")
